@@ -19,10 +19,10 @@ const Topbar = () => {
       <div className="flex-between py-4 px-5">
         <Link to="/" className="flex gap-3 items-center">
           <img
-            src="/assets/images/logo.webp"
+            src="/assets/images/face.webp"
             alt="logo"
-            width={50}
-            height={50}
+            width={35}
+            height={35}
           />
         </Link>
 
