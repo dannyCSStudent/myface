@@ -55,22 +55,22 @@ import {
   // POST QUERIES
   // ============================================================
   
-  // export const useGetPosts = () => {
-  //   return useInfiniteQuery({
-  //     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
-  //     queryFn: getInfinitePosts as any,
-  //     getNextPageParam: (lastPage: any) => {
-  //       // If there's no data, there are no more pages.
-  //       if (lastPage && lastPage.documents.length === 0) {
-  //         return null;
-  //       }
+  export const useGetPosts = () => {
+    return useInfiniteQuery({
+      queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
+      queryFn: getInfinitePosts as any,
+      getNextPageParam: (lastPage: any) => {
+        // If there's no data, there are no more pages.
+        if (lastPage && lastPage.documents.length === 0) {
+          return null;
+        }
   
-  //       // Use the $id of the last document as the cursor.
-  //       const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
-  //       return lastId;
-  //     },
-  //   });
-  // };
+        // Use the $id of the last document as the cursor.
+        const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
+        return lastId;
+      },
+    });
+  };
   
   export const useSearchPosts = (searchTerm: string) => {
     return useQuery({
@@ -127,18 +127,18 @@ import {
     });
   };
   
-//   export const useDeletePost = () => {
-//     const queryClient = useQueryClient();
-//     return useMutation({
-//       mutationFn: ({ postId, imageId }: { postId?: string; imageId: string }) =>
-//         deletePost(postId, imageId),
-//       onSuccess: () => {
-//         queryClient.invalidateQueries({
-//           queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
-//         });
-//       },
-//     });
-//   };
+  export const useDeletePost = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: ({ postId, imageId }: { postId?: string; imageId: string }) =>
+        deletePost(postId, imageId),
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+        });
+      },
+    });
+  };
   
   export const useLikePost = () => {
     const queryClient = useQueryClient();
@@ -222,25 +222,25 @@ import {
     });
   };
   
-//   export const useGetUserById = (userId: string) => {
-//     return useQuery({
-//       queryKey: [QUERY_KEYS.GET_USER_BY_ID, userId],
-//       queryFn: () => getUserById(userId),
-//       enabled: !!userId,
-//     });
-//   };
+  export const useGetUserById = (userId: string) => {
+    return useQuery({
+      queryKey: [QUERY_KEYS.GET_USER_BY_ID, userId],
+      queryFn: () => getUserById(userId),
+      enabled: !!userId,
+    });
+  };
   
-//   export const useUpdateUser = () => {
-//     const queryClient = useQueryClient();
-//     return useMutation({
-//       mutationFn: (user: IUpdateUser) => updateUser(user),
-//       onSuccess: (data) => {
-//         queryClient.invalidateQueries({
-//           queryKey: [QUERY_KEYS.GET_CURRENT_USER],
-//         });
-//         queryClient.invalidateQueries({
-//           queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
-//         });
-//       },
-//     });
-//   };
+  export const useUpdateUser = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: (user: IUpdateUser) => updateUser(user),
+      onSuccess: (data) => {
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+        });
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+        });
+      },
+    });
+  };
