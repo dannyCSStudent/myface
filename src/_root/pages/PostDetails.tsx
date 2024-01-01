@@ -1,8 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui";
-import { Loader } from "@/components/shared";
-// import { GridPostList, PostStats } from "@/components/shared";
+import { GridPostList, PostStats, Loader } from "@/components/shared";
 
 import {
   useGetPostById,
@@ -132,7 +131,7 @@ const PostDetails = () => {
             </div>
 
             <div className="w-full">
-              {/* <PostStats post={post} userId={user.id} /> */}
+              <PostStats post={post} userId={user.id} />
             </div>
           </div>
         </div>
@@ -147,8 +146,7 @@ const PostDetails = () => {
         {isUserPostLoading || !relatedPosts ? (
           <Loader />
         ) : (
-          'grid'
-          // <GridPostList posts={relatedPosts} />
+          <GridPostList posts={relatedPosts} />
         )}
       </div>
     </div>
