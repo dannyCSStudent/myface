@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-
 import { bottombarLinks } from "@/constants";
 
 const Bottombar = () => {
@@ -23,7 +22,6 @@ const Bottombar = () => {
               height={16}
               className={`${isActive && "invert-white"}`}
             />
-
             <p className="tiny-medium text-light-2">{link.label}</p>
           </Link>
         );

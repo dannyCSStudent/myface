@@ -53,9 +53,9 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
     likePost({ postId: post.$id, likesArray });
   };
 
-  const handleSavePost = (
-    e: React.MouseEvent<HTMLImageElement, MouseEvent>
-  ) => {
+   const handleSavePost = (
+     e: React.MouseEvent<HTMLImageElement, MouseEvent>
+   ) => {
     e.stopPropagation();
 
     if (savedPostRecord) {
